@@ -12,6 +12,7 @@ import com.testngScript.jdbc.JdbcService;
 import com.testngScript.util.JsonUtils;
 
 import org.apache.commons.collections.map.LinkedMap;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Header;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.testng.Assert;
@@ -56,7 +57,7 @@ public class HttpClientApp {
 
             //设置header信息
 
-            Header[] headers = HttpHeader.custom().contentType(Optional.ofNullable(requstContentType).orElse(HttpHeader.Headers.TEXT_JSON)).build();
+            Header[] headers = HttpHeader.custom().contentType(StringUtils.isBlank(requstContentType) ? HttpHeader.Headers.TEXT_JSON : requstContentType).build();
             //插件式配置请求参数（网址、请求参数、编码、client）
             HttpConfig config = HttpConfig.custom()
                     .headers(headers) //设置headers，不需要时则无需设置
@@ -64,7 +65,7 @@ public class HttpClientApp {
                     .map(map)
                     .encoding("utf-8");//设置请求和返回编码，默认就是Charset.defaultCharset()
             if (HttpHeader.Headers.TEXT_JSON.equals(requstContentType)) {
-                    config.json(parameterValues) ;//设置请求参数，没有则无需设置
+                config.json(parameterValues) ;//设置请求参数，没有则无需设置
             } else if (HttpHeader.Headers.APP_FORM_URLENCODED.equals(requstContentType)) {
                 config.map(JSON.parseObject(parameterValues, Map.class));
             }

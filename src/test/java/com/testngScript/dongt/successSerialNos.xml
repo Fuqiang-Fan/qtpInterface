@@ -20,6 +20,7 @@
         <!--http 请求方式：GET、POST、PUT、DELETE,-->
         <parameter name="method" value="POST"/>
         <!--<parameter name="parameterTypes" value="java.lang.String"/>-->
+        <parameter name="requstContentType" value=""/>
         <!--输入参数值,多个参数以 "#" 分隔-->
         <parameter name="parameterValues" value="{
     'data':{
