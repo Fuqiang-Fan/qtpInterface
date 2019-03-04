@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<!--以下为XML标志符的数字和字符串转义符
+       "     (&#34; 或 &quot;)
+       '     (&#39; 或 &apos;)
+       &     (&#38; 或 &amp;)
+       lt(<) (&#60; 或 &lt;)
+       gt(>) (&#62; 或 &gt;)
+   -->
+<suite name="Simple dubbo_testng_sample Suite" >
+    <listeners>
+        <listener class-name="com.suixingpay.listeners.ProgressTrackers" />
+    </listeners>
+    <!--dubbo 提供者 服务接口地址 172.16.136.198-->
+    <parameter name="dubbo_url" value="dubbo://127.0.0.1:20880" />
+    <!-- dubbo 接口名称-->
+    <parameter name="dubbo_interface" value="com.alibaba.dubbo.demo.DemoService"/>
+
+
+
+    <test name="sayhello">
+        <!--接口方法-->
+        <parameter name="method" value="sayHello"/>
+        <!--接口方法method,参数类型-->
+        <parameter name="parameterTypes" value="java.lang.String"/>
+        <!--输入参数值-->
+        <parameter name="parameterValues" value="张三"/>
+        <!--输入预期值-->
+        <parameter name="expected" value="Hello:张三"/>
+
+        <classes>
+            <class name="com.suixingpay.sample.testng.SampleDubboDemoTest" >
+                <methods>
+                    <include name="testSayHello" />
+                </methods>
+
+            </class>
+        </classes>
+    </test>
+
+    <test name="testgetPersonByParms">
+        <!--接口方法-->
+        <parameter name="method" value="getPersonByParms"/>
+        <!--接口方法method,参数类型-->
+        <parameter name="parameterTypes" value="java.lang.String,java.lang.String[]"/>
+        <!--输入参数值-->
+        <parameter name="parameterValues" value="张三#[随行付,随行付b]"/>
+        <!--输入预期值-->
+        <parameter name="expected" value=""/>
+        <classes>
+            <class name="com.suixingpay.sample.testng.SampleDubboDemoTest" >
+                <methods>
+                    <include name="testgetPersonByParms" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="testgetPerson">
+        <!--接口方法-->
+        <parameter name="method" value="getPerson"/>
+        <!--接口方法method,参数类型,多个参数以"#"分隔-->
+        <parameter name="parameterTypes" value=""/>
+        <!--输入参数值,多个以";"分隔-->
+        <parameter name="parameterValues" value=""/>
+        <!--输入预期值-->
+        <parameter name="expected" value="{&quot;name&quot;:&quot;张三&quot;,&quot;amout&quot;:200,&quot;message&quot;:&quot;返回成功&quot;,&quot;bigDecimal&quot;:3000}"/>
+        <classes>
+            <class name="com.suixingpay.sample.testng.SampleDubboDemoTest" >
+                <methods>
+                    <include name="testgetPerson" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+    <test name="testgetPersonByObject">
+        <!--接口方法-->
+        <parameter name="method" value="getPersonByPerson"/>
+        <!--接口方法method,参数类型,多个参数以";"分隔-->
+        <parameter name="parameterTypes" value="class:com.alibaba.dubbo.demo.Person"/>
+        <!--输入参数值,多个以";"分隔-->
+        <parameter name="parameterValues" value="{&quot;name&quot;:&quot;张三1234&quot;,&quot;class&quot;:&quot;com.alibaba.dubbo.demo.Person&quot;}"/>
+        <!--输入预期值-->
+        <parameter name="expected" value="{&quot;name&quot;:&quot;张三1234&quot;}"/>
+        <classes>
+            <class name="com.suixingpay.sample.testng.SampleDubboDemoTest" >
+                <methods>
+                    <include name="testgetPersonByObject" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+    <test name="testgetPersonByMap">
+        <parameter name="" value="" />
+
+        <!--接口方法-->
+        <parameter name="method" value="getHashmap"/>
+        <!--接口方法method,参数类型,多个参数以";"分隔-->
+        <parameter name="parameterTypes" value="java.util.Map"/>
+        <!--输入参数值,多个以";"分隔-->
+        <parameter name="parameterValues" value="{&quot;name&quot;:&quot;张三1234&quot;,&quot;password&quot;:&quot;密码1234&quot;}"/>
+        <!--输入预期值-->
+        <parameter name="expected" value="{&quot;name&quot;:&quot;张三1234&quot;}"/>
+        <classes>
+            <class name="com.suixingpay.sample.testng.SampleDubboDemoTest" >
+                <methods>
+                    <include name="testgetPersonByMap" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="testgetPersonByListObject">
+
+        <!--接口方法-->
+        <parameter name="method" value="getPersonLists"/>
+        <!--接口方法method,参数类型,多个参数以";"分隔-->
+        <parameter name="parameterTypes" value="java.util.List"/>
+        <!--输入参数值,多个以";"分隔-->
+        <!--
+        字符转义
+        [{"name":"actual.provider11","class":"com.alibaba.dubbo.demo.Person"},
+        {"name":"actual.provider222","class":"com.alibaba.dubbo.demo.Person"}]
+        -->
+        <parameter name="parameterValues" value="[{&quot;name&quot;:&quot;actual.provider11&quot;,&quot;class&quot;:&quot;com.alibaba.dubbo.demo.Person&quot;},{&quot;name&quot;:&quot;actual.provider222&quot;,&quot;class&quot;:&quot;com.alibaba.dubbo.demo.Person&quot;}]"/>
+        <!--输入预期值-->
+        <parameter name="expected" value="[{&quot;name&quot;:&quot;actual.provider11&quot;}]"/>
+        <classes>
+            <class name="com.suixingpay.sample.testng.SampleDubboDemoTest" >
+                <methods>
+                    <include name="testgetPersonByListObject" />
+                </methods>
+            </class>
+        </classes>
+
+
+    </test>
+
+</suite>

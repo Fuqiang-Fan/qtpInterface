@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<!--以下为XML标志符的数字和字符串转义符
+       "     (&#34; 或 &quot;)
+       '     (&#39; 或 &apos;)
+       &     (&#38; 或 &amp;)
+       lt(<) (&#60; 或 &lt;)
+       gt(>) (&#62; 或 &gt;)
+   -->
+<suite name="Simple"   preserve-order="true">
+    <listeners>
+        <listener class-name="com.suixingpay.listeners.ProgressTrackers" />
+    </listeners>
+
+    <test name="sayhello">
+        <!--接口方法-->
+        <parameter name="httpURL" value="http://172.16.136.123:8080/smsService/sms/send"/>
+        <!--http 请求方式：GET、POST、PUT、DELETE,-->
+        <parameter name="method" value="POST"/>
+        <!--输入参数值,多个参数以 "#" 分隔-->
+        <parameter name="parameterValues" value="
+        \<LIST\>\<MAP\>\<MOBILE>18514789854</MOBILE><CONTENT>短信内容</CONTENT><STARTTIME>2012/07/19</STARTTIME><ENDTIME>2012/07/19</ENDTIME><SMSTYPEMAJOR>1000</SMSTYPEMAJOR><SMSTYPESUB>1011</SMSTYPESUB></MAP></LIST>
+        "/>
+        <!--输入预期值，json字符串，改字符串回和实际返回值进行比较，评判改test case 是否用通过。-->
+        <parameter name="expected" value="{}"/>
+
+
+        <!--是否需要创建.sql脚本文件,开关-->
+        <parameter name="isCrateFile" value="false"/>
+        <!--生成文件的名称,注意每个case名称不能相同-->
+        <parameter name="filename" value="filename1" />
+
+        <!--  是否需要初始化数据,开关-->
+        <parameter name="init" value="false"/>
+        <!--执行sql语句,多条sql执行以";;"分隔,俩个分隔,问题输入值代分号-->
+        <parameter name="script_sql" value="sql;sql2;sql3;sql4"/>
+
+        <!--interface_select_sql 查询接口影响的表数据-->
+        <parameter name="interface_select_sql" value="select count(*) from table wher col='a',col='1'"/>
+
+        <classes>
+            <!-- 脚本中的方法，可以多个，形式如下：
+                   <include name="testString1" />
+                   <include name="testString2" />
+                   <include name="testString3" />
+                   第二中，可以不指定具体的方法，删除
+                   <methods></methods>,回执行class里面所有@test 方法  -->
+            <class name="com.suixingpay.HttpClientApp" >
+                <methods>
+                    <include name="run" />
+                </methods>
+            </class>
+        </classes>
+
+    </test>
+
+
+
+    <!--<test name="getHello">-->
+        <!--&lt;!&ndash;接口方法&ndash;&gt;-->
+        <!--<parameter name="httpURL" value="http://localhost:2222/add?a=10&amp;b=2000"/>-->
+        <!--&lt;!&ndash;http 请求方式：GET、POST、PUT、DELETE,&ndash;&gt;-->
+        <!--<parameter name="method" value="GET"/>-->
+        <!--&lt;!&ndash;输入参数值,多个参数以 "#" 分隔&ndash;&gt;-->
+        <!--<parameter name="parameterValues" value=""/>-->
+
+
+        <!--&lt;!&ndash;输入预期值，json字符串，改字符串回和实际返回值进行比较，评判改test case 是否用通过。&ndash;&gt;-->
+        <!--<parameter name="expected" value="2010"/>-->
+
+
+        <!--&lt;!&ndash;是否需要创建.sql脚本文件,开关&ndash;&gt;-->
+        <!--<parameter name="isCrateFile" value="false"/>-->
+        <!--&lt;!&ndash;生成文件的名称,注意每个case名称不能相同&ndash;&gt;-->
+        <!--<parameter name="filename" value="filename1" />-->
+
+        <!--&lt;!&ndash;  是否需要初始化数据,开关&ndash;&gt;-->
+        <!--<parameter name="init" value="false"/>-->
+        <!--&lt;!&ndash;执行sql语句,多条sql执行以";;"分隔,俩个分隔,问题输入值代分号&ndash;&gt;-->
+        <!--<parameter name="script_sql" value="sql;sql2;sql3;sql4"/>-->
+        <!--<classes>-->
+            <!--&lt;!&ndash; 脚本中的方法，可以多个，形式如下：-->
+                   <!--<include name="testString1" />-->
+                   <!--<include name="testString2" />-->
+                   <!--<include name="testString3" />-->
+                   <!--第二中，可以不指定具体的方法，删除-->
+                   <!--<methods></methods>,回执行class里面所有@test 方法  &ndash;&gt;-->
+            <!--<class name="com.suixingpay.HttpClientApp" >-->
+                <!--<methods>-->
+                    <!--<include name="run" />-->
+                <!--</methods>-->
+            <!--</class>-->
+        <!--</classes>-->
+
+    <!--</test>-->
+
+
+
+
+
+</suite>
