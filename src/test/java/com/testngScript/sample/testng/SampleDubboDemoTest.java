@@ -1,4 +1,4 @@
-package com.testGNScript.sample.testng;
+package com.testngScript.sample.testng;
 
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;

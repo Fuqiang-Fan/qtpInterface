@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<!--以下为XML标志符的数字和字符串转义符
+       "     (&#34; 或 ')
+       '     (&#39; 或 &apos;)
+       &     (&#38; 或 &amp;)
+       lt(<) (&#60; 或 &lt;)
+       gt(>) (&#62; 或 &gt;)
+   -->
+<suite name="业务向东腾资方、租赁方、租赁方的资方申请建户和授信(或进件)用例集"   preserve-order="true">
+    <listeners>
+        <listener class-name="com.testngScript.listeners.ProgressTrackers" />
+    </listeners>
+    <!--互联网商户注册接口测试-->
+    <!--1.必填项正确输入，互联网商户注册成功-->
+    <test name="1订单资方为志远时，推送资方成功">
+        <!--接口方法-->
+        <parameter name="httpURL" value="https://fund-api.orange-king.com/loanData/push"/>
+
+        <!--http 请求方式：GET、POST、PUT、DELETE,-->
+        <parameter name="method" value="POST"/>
+        <!--<parameter name="parameterTypes" value="java.lang.String"/>-->
+        <!--输入参数值,多个参数以 "#" 分隔-->
+        <parameter name="requstContentType" value="application/x-www-form-urlencoded"/>
+
+        <parameter name="parameterValues" value="{
+      'action':'create',
+      'type':1,
+      'investorId':'4',
+      'businessId':'ZCJF20190301141935674',
+      'channelId':'A4'
+  }"/>
+        <!--输入预期值，json字符串，改字符串回和实际返回值进行比较，评判改test case 是rt否用通过。-->
+        <parameter name="expected" value="{'status':'0000'}"/>
+        <!--是否需要创建.sql脚本文件,开关-->
+        <parameter name="isCrateFile" value="false"/>
+        <!--生成文件的名称,注意每个case名称不能相同-->
+        <parameter name="filename" value="regist_merchant1" />
+        <!--  是否需要初始化数据,开关-->
+        <parameter name="init" value="false"/>
+        <!--执行sql语句,多条sql执行以";;"分隔,俩个分隔,问题输入值代分号-->
+        <parameter name="script_sql" value=""/>
+
+        <parameter name="interface_select_sql" value=""/>
+
+        <classes>
+            <!-- 脚本中的方法，可以多个，形式如下：
+                   <include name="testString1" />
+                   <include name="testString2" />
+                   <include name="testString3" />
+                   第二中，可以不指定具体的方法，删除
+                   <methods></methods>,回执行class里面所有@test 方法  -->
+            <class name="com.testngScript.HttpClientApp" >
+                <methods>
+                    <include name="run" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

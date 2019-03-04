@@ -30,7 +30,7 @@
         <parameter name="expected" value="Hello:张三"/>
 
         <classes>
-            <class name="com.testGNScript.sample.testng.SampleDubboDemoTest" >
+            <class name="com.testngScript.sample.testng.SampleDubboDemoTest" >
                 <methods>
                     <include name="testSayHello" />
                 </methods>
@@ -49,7 +49,7 @@
         <!--输入预期值-->
         <parameter name="expected" value=""/>
         <classes>
-            <class name="com.testGNScript.sample.testng.SampleDubboDemoTest" >
+            <class name="com.testngScript.sample.testng.SampleDubboDemoTest" >
                 <methods>
                     <include name="testgetPersonByParms" />
                 </methods>
@@ -67,7 +67,7 @@
         <!--输入预期值-->
         <parameter name="expected" value="{&quot;name&quot;:&quot;张三&quot;,&quot;amout&quot;:200,&quot;message&quot;:&quot;返回成功&quot;,&quot;bigDecimal&quot;:3000}"/>
         <classes>
-            <class name="com.testGNScript.sample.testng.SampleDubboDemoTest" >
+            <class name="com.testngScript.sample.testng.SampleDubboDemoTest" >
                 <methods>
                     <include name="testgetPerson" />
                 </methods>
@@ -86,7 +86,7 @@
         <!--输入预期值-->
         <parameter name="expected" value="{&quot;name&quot;:&quot;张三1234&quot;}"/>
         <classes>
-            <class name="com.testGNScript.sample.testng.SampleDubboDemoTest" >
+            <class name="com.testngScript.sample.testng.SampleDubboDemoTest" >
                 <methods>
                     <include name="testgetPersonByObject" />
                 </methods>
@@ -107,7 +107,7 @@
         <!--输入预期值-->
         <parameter name="expected" value="{&quot;name&quot;:&quot;张三1234&quot;}"/>
         <classes>
-            <class name="com.testGNScript.sample.testng.SampleDubboDemoTest" >
+            <class name="com.testngScript.sample.testng.SampleDubboDemoTest" >
                 <methods>
                     <include name="testgetPersonByMap" />
                 </methods>
@@ -131,7 +131,7 @@
         <!--输入预期值-->
         <parameter name="expected" value="[{&quot;name&quot;:&quot;actual.provider11&quot;}]"/>
         <classes>
-            <class name="com.testGNScript.sample.testng.SampleDubboDemoTest" >
+            <class name="com.testngScript.sample.testng.SampleDubboDemoTest" >
                 <methods>
                     <include name="testgetPersonByListObject" />
                 </methods>
